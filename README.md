@@ -1,5 +1,5 @@
 # Too-Long-Didn-t-Watch
-A Gen AI application to summarize English and Hindi Videos using YouTube's API, LangChain, and Gemini
+A Gen AI application to summarize English and Hindi Videos + Chat with 'em using YouTube's API, LangChain, and Gemini
 
 ### Clone the repo and install requirements
     pip install -r requirements.txt
