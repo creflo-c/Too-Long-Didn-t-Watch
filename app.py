@@ -21,11 +21,11 @@ def get_title(url:str) -> str:
 
     link = url
     page = requests.get(link)
-    time.sleep(2)
+    time.sleep(1)
     soup = BeautifulSoup(page.text,'html.parser')
-    time.sleep(2)
+    time.sleep(1)
     title = soup.title.text
-    time.sleep(2)
+    time.sleep(1)
 
     return title
 
@@ -94,7 +94,9 @@ def main():
     if st.button("Summarize"):
         st.session_state.summary = None
         st.session_state.messages = []
-        st.write(f'<h4>{get_title(yt_link)}</h4>',unsafe_allow_html=1)
+        text = get_title(yt_link)
+        time.sleep(3)
+        st.write(f'<h4>{text}</h4>',unsafe_allow_html=1)
         if yt_link:
             with st.spinner("Generating summary... Please wait."):
                 st.session_state.summary = ai(yt_link)  
