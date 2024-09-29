@@ -41,6 +41,7 @@ def fetch_and_format_transcript(url):
     formatter = TextFormatter()
     try:
         transcript = YouTubeTranscriptApi.get_transcript(video_id)
+        time.sleep(5)
         formatted_transcript = formatter.format_transcript(transcript)
         return formatted_transcript
     except NoTranscriptFound:
