@@ -17,6 +17,8 @@ google_api_key = os.getenv("GOOGLE_API_KEY")
 
 
 def get_title(url:str) -> str:
+    # test url
+    # link = 'https://www.youtube.com/watch?v=jaRCENYBuYo'
 
     link = url
     page = requests.get(link)
@@ -40,18 +42,11 @@ def fetch_and_format_transcript(url):
         return formatted_transcript
     except NoTranscriptFound:
         try:
-            print(video_id)
             transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
-            print("Obtained Transcripts lists")
             transcript = transcript_list.find_transcript(['hi'])
-            print("Obtained Transcripts-hi")
             translated_transcript = transcript.translate('en')
-            print("Obtained -en")
             transcript = translated_transcript.fetch()
-            print("Translated")
             formatted_transcript = formatter.format_transcript(transcript)
-            print("Formatted Script")
-            
             return formatted_transcript
         except (NoTranscriptFound, TranscriptsDisabled):
             return "Subtitles have not been provided for this video yet."
