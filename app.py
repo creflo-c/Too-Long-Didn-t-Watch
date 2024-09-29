@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
+import streamlit as st
 
 async def get_title(url: str) -> str:
     async with aiohttp.ClientSession() as session:
