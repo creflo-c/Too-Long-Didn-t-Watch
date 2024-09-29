@@ -15,17 +15,18 @@ import time
 
 load_dotenv()
 google_api_key = os.getenv("GOOGLE_API_KEY")
-
+text = ''
 
 def get_title(url:str) -> str:
-
+    global text
     link = url
     page = requests.get(link)
-    time.sleep(1)
+    time.sleep(2)
     soup = BeautifulSoup(page.text,'html.parser')
-    time.sleep(1)
+    time.sleep(2)
     title = soup.title.text
     time.sleep(1)
+    text = title
 
     return title
 
@@ -80,6 +81,7 @@ def ai(url):
 
 
 def main():
+    global text
     st.title("ClipWise🎥 - An AI tool for YouTube")
     st.write("Enter the YouTube video link below:")
 
@@ -94,7 +96,7 @@ def main():
     if st.button("Summarize"):
         st.session_state.summary = None
         st.session_state.messages = []
-        text = get_title(yt_link)
+        
         time.sleep(3)
         st.write(f'<h4>{text}</h4>',unsafe_allow_html=1)
         if yt_link:
